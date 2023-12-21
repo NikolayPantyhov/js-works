@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+
+    if (confirm('Tell me three most important words 💚')) {
+        let words = [];
+
+        for (let i = 0; i < 3; i++) {
+            let word;
+
+            do {
+                word = prompt(`Enter the ${i+1} word`)
+
+                if (word === null) {
+                    alert('End programme')
+                } else if (word === '') {
+                    alert('Empty word')
+                }
+            } while (word === '' || word === null)
+
+            let formatting
+
+            do {
+                formatting = prompt(`Choose format for ${word} (uppercase, lowercase, capitalize)`);
+
+                if (formatting === null) {
+                    alert('End programme')
+                } else if (formatting === '' || !['uppercase', 'lowercase', 'capitalize'].includes(formatting)) {
+                    alert('Invalid formatting')
+                }
+            } while (formatting === '' || formatting === null || !['uppercase', 'lowercase', 'capitalize'].includes(formatting))
+
+            switch (formatting) {
+                case 'uppercase':
+                    words.push(word.toUpperCase())
+                    break;
+                case 'lowercase':
+                    words.push(word.toLowerCase());
+                    break;
+                case 'capitalize':
+                    words.push(word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+                    break;
+            }
+        }
+
+        console.log(`${words[0]}, ${words[1]}, ${words[2]}`)
+
+    } else {
+        alert('End programme')
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // // Показуємо confirm і зупиняємо виконання, якщо користувач вибрав Cancel
+    // if (confirm('Tell me three most important words 💚')) {
+    //     let words = [];
+    //
+    //     // Запитуємо три слова від користувача
+    //     for (let i = 0; i < 3; i++) {
+    //         let word;
+    //
+    //         do {
+    //             // Повторно робимо запит слова, поки воно не буде валідним
+    //             word = prompt(`Enter the ${i + 1}-th word:`);
+    //
+    //             if (word === null) {
+    //                 // Користувач натиснув Cancel, завершуємо виконання програми
+    //                 alert('You have canceled the operation. Exiting...');
+    //                 throw new Error('Operation canceled by user.');
+    //             } else if (word === '') {
+    //                 // Користувач залишив пустий рядок, повторюємо запит
+    //                 alert('Please enter a non-empty word.');
+    //             } else if (/\d/.test(word)) {
+    //                 // Слово містить хоча б одну цифру, повторюємо запит
+    //                 alert('Word cannot contain digits. Please try again.');
+    //             }
+    //         } while (word === '' || /\d/.test(word));
+    //
+    //         let format;
+    //
+    //         do {
+    //             // Повторно робимо запит форматування, поки воно не буде валідним
+    //             format = prompt(`Choose formatting for ${word} (uppercase, lowercase, capitalize):`);
+    //
+    //             if (format === null) {
+    //                 // Користувач натиснув Cancel, завершуємо виконання програми
+    //                 alert('You have canceled the operation. Exiting...');
+    //                 throw new Error('Operation canceled by user.');
+    //             } else if (format === '' || !['uppercase', 'lowercase', 'capitalize'].includes(format)) {
+    //                 // Невірний формат, повторюємо запит
+    //                 alert('Invalid format. Please choose from uppercase, lowercase, or capitalize.');
+    //             }
+    //         } while (format === '' || !['uppercase', 'lowercase', 'capitalize'].includes(format));
+    //
+    //         // Додаємо форматоване слово до масиву
+    //         switch (format) {
+    //             case 'uppercase':
+    //                 words.push(word.toUpperCase());
+    //                 break;
+    //             case 'lowercase':
+    //                 words.push(word.toLowerCase());
+    //                 break;
+    //             case 'capitalize':
+    //                 words.push(word.charAt(0).toUpperCase() + word.slice(1));
+    //                 break;
+    //         }
+    //     }
+    //
+    //     // Виводимо результат у консоль
+    //     console.log(`${words[0]} ${words[1]} ${words[2]}!`);
+    // } else {
+    //     // Користувач натиснув Cancel, завершуємо виконання програми
+    //     alert('You have canceled the operation. Exiting...');
+    // }
+
+
+</script>
+
+</body>
+</html>
