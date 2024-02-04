@@ -1,43 +1,25 @@
-function getRandomIntInclusive(min, max) {
-
-    min = Math.ceil(min);
-
-    max = Math.floor(max);
-
-    return Math.floor(Math.random() * (max - min + 1) + min);
-
+document.querySelector('.btn').onclick = () => {
+    toggleModal('Привіт 1')
+    toggleModal('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci fuga recusandae rerum temporibus velit voluptatum?')
+    toggleModal('Привіт 2')
 }
+function toggleModal(content) {
+    let existedModals = document.querySelectorAll('dialog[open]')
+    let offset = 0
+    if (existedModals[0]) {
+        offset = Array.from(existedModals).reduce((acc, modal) => {
+            return Math.max(acc, modal.offsetTop + modal.offsetHeight + 20)
+        }, 0)
+    }
 
-let randomString = prompt("Введіть довільний рядок")
-
-let userId = +prompt("Введіть ID від 1 до 4 ")
-
-switch (userId) {
-    case 1:
-        let charIndex = +prompt("Введіть індекс символу")
-        let valueUnicode = randomString.charCodeAt(charIndex)
-        console.log(`Значення символу за індексом ${charIndex}: ${valueUnicode}`)
-        break;
-
-    case 2:
-        let deleteIndex = +prompt("Введіть індекс символа який треба видалити")
-        let updateString = randomString.slice(0, deleteIndex) + randomString.slice(deleteIndex + 1)
-        console.log(`Рядок після видалення символу за індексом ${deleteIndex}: ${updateString}`)
-        break;
-
-    case 3:
-        let replaceIndex = +prompt("Введіть індекс символа який треба замінити")
-        let smiles = ["😊", "😎", "🥳", "😍", "🤔", "😜", "🤩", "😇", "😂", "👍"]
-        let randomSmile = smiles[getRandomIntInclusive(0, smiles.length - 1)]
-        let stringWithSmile = randomString.slice(0, replaceIndex) + randomSmile + randomString.slice(replaceIndex + 1)
-        console.log(`Рядок після заміни символу за індексом ${replaceIndex}: ${stringWithSmile}`)
-        break;
-
-    case 4:
-        let countLetter = randomString.replace(/\s/g, "").length
-        console.log(`Кількість літер без пробілів ${countLetter}`)
-        break;
-
-    default:
-        console.log("Невірний ID")
+    let modal = createModal(content, offset)
+    document.querySelector('body').appendChild(modal)
+}
+function createModal(content, top = 0) {
+    let modal = document.createElement('dialog')
+    modal.innerText = content
+    modal.classList.add('active')
+    modal.style.top = `${top}px`;
+    modal.setAttribute('open', '')
+    return modal
 }
